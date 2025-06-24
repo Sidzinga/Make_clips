@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const VideoEditor = () => {
   const api = axios.create({
-    baseURL:  'http://localhost:5000/api',})
+    baseURL:  'https://make-clips121821-cna9bxhweybjatcg.southafricanorth-01.azurewebsites.net/api',})
   const videoRef = useRef(null);
   const [currentStep, setCurrentStep] = useState('upload');
   const [videoSource, setVideoSource] = useState(null);
@@ -78,6 +78,7 @@ const VideoEditor = () => {
     }
     
     setIsSaving(true);
+    setIsPlaying(false);
     try {
       const response = await api.post('/process', {
         segments: scenes,
