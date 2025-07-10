@@ -68,7 +68,9 @@ Internet connection for processing
 No installation required
 
 <h2>Getting Started</h2>
-Visit the application URL
+Visit the application URL https://jolly-desert-000fa0503.6.azurestaticapps.net/
+
+Or <a href="https://jolly-desert-000fa0503.6.azurestaticapps.net/">Click here</a>
 
 Upload your video or paste a URL
 
