@@ -1,7 +1,12 @@
 from moviepy import VideoFileClip, TextClip, CompositeVideoClip
 import whisper
-import os
 
+import os
+from azure.storage.fileshare import ShareServiceClient
+
+# Use connection string (or SAS/Key)
+connection_string = "DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net"
+service_client = ShareServiceClient.from_connection_string(connection_string)
 # font = ''
 
 def transcribe_and_highlight(video_path=None, output_path=None, load_video=None,font = "ComicRelief.ttf"):
@@ -74,6 +79,7 @@ def transcribe_and_highlight(video_path=None, output_path=None, load_video=None,
         preset='fast'
     )
     os.remove("temp_audio.mp3")
+    return output_path
 
 # if __name__ == "__main__":
 # transcribe_and_highlight("Static/testing.mp4", "output_video5.mp4")

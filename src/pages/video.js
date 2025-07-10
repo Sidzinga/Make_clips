@@ -80,6 +80,7 @@ const VideoEditor = () => {
     setIsSaving(true);
     setIsPlaying(false);
     try {
+      
       const response = await api.post('/process', {
         segments: scenes,
         source: videoSource,

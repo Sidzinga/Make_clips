@@ -13,11 +13,20 @@ from urllib.parse import urlparse
 import uuid
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
+from azure.storage.fileshare import ShareServiceClient
 
 load_dotenv()
+
 app = Flask(__name__)
 
-# Azure Configuration from Environment Variables
+connection_string = f"DefaultEndpointsProtocol=https;AccountName={os.getenv('AZ_STORAGE_ACC_NAME')};AccountKey={os.getenv('AZ_STORAGE_ACC_KEY')};EndpointSuffix=core.windows.net"
+service_client = ShareServiceClient.from_connection_string(connection_string)
+
+share_client = service_client.get_share_client("store")
+
+download_dir = share_client.get_directory_client("downloads")
+uploads_dir = share_client.get_directory_client("uploads")
+
 app.config.update({
     'ALLOWED_DOMAINS': os.getenv('ALLOWED_DOMAINS', 'youtube.com,vimeo.com').split(','),
     'MAX_URL_SIZE': int(os.getenv('MAX_URL_SIZE', 524288000)),  # 500MB
